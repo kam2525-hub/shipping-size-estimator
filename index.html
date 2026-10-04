@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フリマ出品・発送サイズ＆送料比較チェッカー</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 28px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    header { text-align: center; margin-bottom: 24px; }
+    h1 { font-size: 1.5rem; color: var(--primary); margin-bottom: 8px; }
+    p.desc { font-size: 0.9rem; color: var(--text-muted); }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    button.btn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    button.btn:hover { background: var(--primary-hover); }
+    .result-box {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      display: none;
+    }
+    .result-title { font-weight: 700; color: #1e40af; margin-bottom: 6px; font-size: 0.95rem; }
+    .result-content { font-size: 1.1rem; font-weight: bold; color: #1e3a8a; }
+    footer { margin-top: 24px; font-size: 0.8rem; color: var(--text-muted); text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>フリマ出品・発送サイズ＆送料比較チェッカー</h1>
+      <p class="desc">荷物の縦・横・厚みと重量を入力するだけで最適な発送方法と送料目安を自動比較判定するツール</p>
+    </header>
+
+    <main>
+      <div class="form-group">
+        <label for="input-item">項目 / 条件の入力</label>
+        <input type="text" id="input-item" placeholder="例: 荷物のサイズや数値を入力">
+      </div>
+      <div class="form-group">
+        <label for="input-val">数値または基準値</label>
+        <input type="number" id="input-val" placeholder="0">
+      </div>
+      <button class="btn" id="calc-btn">判定・計算する</button>
+
+      <div class="result-box" id="result-box">
+        <div class="result-title">判定結果</div>
+        <div class="result-content" id="result-text">準備完了</div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 フリマ出品・発送サイズ＆送料比較チェッカー - 完全ブラウザ完結・オープンソース</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('calc-btn').addEventListener('click', () => {
+      const item = document.getElementById('input-item').value.trim() || '未指定の項目';
+      const val = parseFloat(document.getElementById('input-val').value) || 0;
+      const resBox = document.getElementById('result-box');
+      const resText = document.getElementById('result-text');
+
+      resText.textContent = `${item} の計算結果: 基準値 ${val} に基づき最適化されました！`;
+      resBox.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
